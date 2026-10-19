@@ -132,3 +132,4 @@
   <!-- Footer note -->
   <text x="480" y="458" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Every calculation displayed in the UI is computed deterministically in Python before being presented.</text>
 </svg>
+
