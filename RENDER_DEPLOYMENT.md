@@ -1,59 +1,90 @@
-# 🚀 Deploying to Render (render.com)
+# Deploying the Campus Resource Intelligence Assistant
 
-This guide walks you through deploying the **Campus Resource Intelligence Assistant** to [Render](https://render.com/).
+The application is deployed as two services:
 
----
+- **Frontend:** Netlify builds and hosts the React/Vite application.
+- **Backend:** Render runs the FastAPI API.
 
-## 🎯 Recommended Method: 1-Click Render Blueprint (Automated)
+## 1. Deploy the backend to Render
 
-The project includes an official [`render.yaml`](./render.yaml) file. This automatically configures:
-- Python 3.12 & Node 20 runtimes
-- Build step: installs Python requirements and compiles React assets via `build.sh`
-- Start step: runs Uvicorn on `$PORT` serving both the React frontend and FastAPI backend
-- Automatic Health Check on `/api/health`
+Create a new **Web Service** from `shivvar7087/NovaTech` with:
 
-### Steps:
-1. Go to your [Render Dashboard](https://dashboard.render.com/).
-2. Click **New +** in the top right, then select **Blueprint**.
-3. Connect your GitHub account and select your repository: **`shivvar7087/NovaTech`**.
-4. Render will detect `render.yaml` automatically.
-5. Click **Apply**.
-6. Render will build and deploy the application. Once finished, you will receive a public HTTPS URL (e.g., `https://campus-resource-intelligence.onrender.com`).
+| Setting | Value |
+|---|---|
+| Name | `campus-resource-intelligence-api` |
+| Environment | `Production` |
+| Runtime | `Python 3` |
+| Branch | `main` |
+| Region | `Oregon (US West)` |
+| Root Directory | Leave blank |
+| Build Command | `pip install -r campus-intelligence/backend/requirements.txt` |
+| Start Command | `uvicorn app.main:app --app-dir campus-intelligence/backend --host 0.0.0.0 --port $PORT` |
+| Health Check Path | `/api/health` |
 
----
+Add these environment variables:
 
-## 🛠️ Alternative Method: Manual Web Service Setup
+| Key | Value |
+|---|---|
+| `PYTHON_VERSION` | `3.12.10` |
+| `OLLAMA_TIMEOUT` | `4.0` |
+| `CORS_ORIGINS` | Your Netlify URL, for example `https://your-site.netlify.app` |
 
-If you prefer to configure the service manually on Render:
+Ollama is optional. If it is unavailable on Render, the backend uses its
+verified rule engine.
 
-1. In the Render Dashboard, click **New +** → **Web Service**.
-2. Connect your GitHub repository: **`shivvar7087/NovaTech`**.
-3. Configure the following settings:
-   - **Name:** `campus-resource-intelligence`
-   - **Region:** Any (e.g., *Oregon (US West)* or *Frankfurt (EU)*)
-   - **Branch:** `main`
-   - **Root Directory:** *(leave blank)*
-   - **Runtime:** `Python`
-   - **Build Command:** `bash build.sh`
-   - **Start Command:** `uvicorn app.main:app --app-dir campus-intelligence/backend --host 0.0.0.0 --port $PORT`
-   - **Instance Type:** `Free`
+After the first successful deploy, copy the Render service URL. It will look
+similar to:
 
-4. Add the following **Environment Variables** under the *Environment* tab:
-   | Key | Value | Notes |
-   |---|---|---|
-   | `PYTHON_VERSION` | `3.12.10` | Matches local Python version |
-   | `NODE_VERSION` | `20.11.0` | Required to build React assets |
-   | `OLLAMA_TIMEOUT` | `4.0` | Prevents timeouts when AI is offline |
-   | `CORS_ORIGINS` | `*` | Allows cross-origin requests |
+```text
+https://campus-resource-intelligence-api.onrender.com
+```
 
-5. Under **Advanced**, set **Health Check Path** to `/api/health`.
-6. Click **Create Web Service**.
+The API health endpoint should then be available at
+`https://your-render-service.onrender.com/api/health`.
 
----
+## 2. Deploy the frontend to Netlify
 
-## 🔍 How the Deployment Works
+Create a new Netlify site from the same GitHub repository:
+`shivvar7087/NovaTech`.
 
-- **Unified Single-Service Hosting**: The build script (`build.sh`) compiles the React frontend into `campus-intelligence/frontend/dist`.
-- **FastAPI Static Mount**: FastAPI automatically detects the `dist` folder and serves the React single-page app at `/` while routing all API endpoints to `/api/*`.
-- **No CORS Issues**: Since both the frontend and API run on the same Render domain, zero cross-origin configuration is required.
-- **Failover Safe**: If an external Ollama runtime is not connected, the application uses its built-in verified mathematical and pattern engines so all queries and charts work immediately on Render.
+Use these settings:
+
+| Setting | Value |
+|---|---|
+| Base directory | `campus-intelligence/frontend` |
+| Build command | `npm run build` |
+| Publish directory | `dist` |
+| Branch | `main` |
+
+The repository includes [`netlify.toml`](./netlify.toml), which supplies these
+settings and the single-page application fallback. If Netlify asks for a
+publish directory after the base directory is set, use `dist`, not
+`campus-intelligence/frontend/dist`.
+
+In Netlify **Site configuration → Environment variables**, add:
+
+```text
+VITE_API_BASE_URL=https://your-render-service.onrender.com/api
+```
+
+Replace the value with the actual Render URL and keep the `/api` suffix. Then
+trigger a new deploy because Vite embeds `VITE_*` values during the build.
+
+## 3. Finish CORS configuration
+
+Copy the final Netlify site URL, including `https://`, into the Render
+`CORS_ORIGINS` variable. For example:
+
+```text
+CORS_ORIGINS=https://campus-resource-intelligence.netlify.app
+```
+
+Save the Render variable and redeploy or restart the service. For local
+development, a comma-separated value can include the local Vite origins:
+
+```text
+CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173,https://your-site.netlify.app
+```
+
+Do not upload the local `.env` file to either platform. Production values
+belong in the Render and Netlify environment-variable dashboards.

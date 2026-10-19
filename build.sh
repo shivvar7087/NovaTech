@@ -15,3 +15,4 @@ npm run build
 cd ../..
 
 echo "✅ Build completed successfully! Production assets ready in campus-intelligence/frontend/dist"
+

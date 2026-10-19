@@ -5,23 +5,21 @@
 
 services:
   # ----------------------------------------------------------------------------
-  # Full-Stack Web Service (FastAPI API + React Frontend bundled)
+  # Backend Web Service (FastAPI API)
   # ----------------------------------------------------------------------------
   - type: web
-    name: campus-resource-intelligence
+    name: campus-resource-intelligence-api
     runtime: python
     plan: free
     region: oregon
     branch: main
-    buildCommand: "bash build.sh"
+    buildCommand: "pip install -r campus-intelligence/backend/requirements.txt"
     startCommand: "uvicorn app.main:app --app-dir campus-intelligence/backend --host 0.0.0.0 --port $PORT"
     healthCheckPath: "/api/health"
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.10
-      - key: NODE_VERSION
-        value: 20.11.0
       - key: OLLAMA_TIMEOUT
         value: "4.0"
       - key: CORS_ORIGINS
-        value: "*"
+        value: "https://YOUR-NETLIFY-SITE.netlify.app"
