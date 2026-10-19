@@ -13,13 +13,14 @@ services:
     plan: free
     region: oregon
     branch: main
-    buildCommand: "pip install -r campus-intelligence/backend/requirements.txt"
+    buildCommand: "bash build.sh"
     startCommand: "uvicorn app.main:app --app-dir campus-intelligence/backend --host 0.0.0.0 --port $PORT"
-    healthCheckPath: "/api/health"
+    healthCheckPath: "/health"
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.10
+      - key: NODE_VERSION
+        value: 20.11.0
       - key: OLLAMA_TIMEOUT
         value: "4.0"
-      - key: CORS_ORIGINS
-        value: "https://YOUR-NETLIFY-SITE.netlify.app"
+
