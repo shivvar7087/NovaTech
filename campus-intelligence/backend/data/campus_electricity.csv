@@ -1,0 +1,361 @@
+timestamp,building,faculty,meter_id,kwh_usage,peak_demand_kw,cost_usd,occupancy,period,is_weekend,weather_condition
+2026-09-01 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,294.5,354.87,41.23,139,Peak,False,Sunny
+2026-09-01 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,512.02,658.12,71.68,406,Peak,False,Sunny
+2026-09-01 14:00:00,Main Library,Academic Services,MTR-LIB-01,170.43,210.38,22.16,61,Peak,False,Sunny
+2026-09-01 14:00:00,Student Union,Student Affairs,MTR-STU-01,267.8,335.04,34.81,60,Peak,False,Sunny
+2026-09-01 14:00:00,North Dormitory,Residential Life,MTR-RES-01,152.9,195.71,18.35,267,Peak,False,Sunny
+2026-09-01 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,245.27,310.97,31.89,373,Peak,False,Sunny
+2026-09-01 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,131.03,171.8,18.34,148,Off-Peak,False,Sunny
+2026-09-01 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,191.18,225.8,26.77,194,Off-Peak,False,Sunny
+2026-09-01 02:00:00,Main Library,Academic Services,MTR-LIB-01,90.18,105.38,11.72,39,Off-Peak,False,Sunny
+2026-09-01 02:00:00,Student Union,Student Affairs,MTR-STU-01,162.96,207.08,21.18,167,Off-Peak,False,Sunny
+2026-09-01 02:00:00,North Dormitory,Residential Life,MTR-RES-01,90.3,113.53,10.84,197,Off-Peak,False,Sunny
+2026-09-01 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,121.75,153.45,15.83,171,Off-Peak,False,Sunny
+2026-09-02 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,449.38,549.29,62.91,126,Peak,False,Windy
+2026-09-02 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,365.3,468.41,51.14,359,Peak,False,Windy
+2026-09-02 14:00:00,Main Library,Academic Services,MTR-LIB-01,278.23,367.56,36.17,396,Peak,False,Windy
+2026-09-02 14:00:00,Student Union,Student Affairs,MTR-STU-01,292.02,362.3,37.96,383,Peak,False,Windy
+2026-09-02 14:00:00,North Dormitory,Residential Life,MTR-RES-01,149.64,182.72,17.96,318,Peak,False,Windy
+2026-09-02 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,322.29,414.69,41.9,78,Peak,False,Windy
+2026-09-02 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,181.93,228.65,25.47,66,Off-Peak,False,Windy
+2026-09-02 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,203.26,244.72,28.46,189,Off-Peak,False,Windy
+2026-09-02 02:00:00,Main Library,Academic Services,MTR-LIB-01,109.16,130.33,14.19,80,Off-Peak,False,Windy
+2026-09-02 02:00:00,Student Union,Student Affairs,MTR-STU-01,157.61,183.01,20.49,170,Off-Peak,False,Windy
+2026-09-02 02:00:00,North Dormitory,Residential Life,MTR-RES-01,93.35,114.84,11.2,34,Off-Peak,False,Windy
+2026-09-02 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,160.25,202.47,20.83,151,Off-Peak,False,Windy
+2026-09-03 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,407.98,501.46,57.12,415,Peak,False,Rainy
+2026-09-03 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,450.95,542.48,63.13,148,Peak,False,Rainy
+2026-09-03 14:00:00,Main Library,Academic Services,MTR-LIB-01,227.36,273.41,29.56,283,Peak,False,Rainy
+2026-09-03 14:00:00,Student Union,Student Affairs,MTR-STU-01,369.67,454.65,48.06,137,Peak,False,Rainy
+2026-09-03 14:00:00,North Dormitory,Residential Life,MTR-RES-01,224.78,281.4,26.97,86,Peak,False,Rainy
+2026-09-03 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,217.54,254.94,28.28,300,Peak,False,Rainy
+2026-09-03 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,194.66,240.29,27.25,33,Off-Peak,False,Rainy
+2026-09-03 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,195.28,263.48,27.34,117,Off-Peak,False,Rainy
+2026-09-03 02:00:00,Main Library,Academic Services,MTR-LIB-01,124.44,164.53,16.18,24,Off-Peak,False,Rainy
+2026-09-03 02:00:00,Student Union,Student Affairs,MTR-STU-01,154.4,198.61,20.07,119,Off-Peak,False,Rainy
+2026-09-03 02:00:00,North Dormitory,Residential Life,MTR-RES-01,71.56,91.47,8.59,42,Off-Peak,False,Rainy
+2026-09-03 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,125.8,156.09,16.35,194,Off-Peak,False,Rainy
+2026-09-04 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,464.94,605.53,65.09,253,Peak,False,Cloudy
+2026-09-04 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,373.41,476.12,52.28,386,Peak,False,Cloudy
+2026-09-04 14:00:00,Main Library,Academic Services,MTR-LIB-01,220.92,262.85,28.72,199,Peak,False,Cloudy
+2026-09-04 14:00:00,Student Union,Student Affairs,MTR-STU-01,259.23,347.55,33.7,418,Peak,False,Cloudy
+2026-09-04 14:00:00,North Dormitory,Residential Life,MTR-RES-01,217.66,276.38,26.12,245,Peak,False,Cloudy
+2026-09-04 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,227.9,278.63,29.63,444,Peak,False,Cloudy
+2026-09-04 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,195.85,234.61,27.42,65,Off-Peak,False,Cloudy
+2026-09-04 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,213.67,249.09,29.91,154,Off-Peak,False,Cloudy
+2026-09-04 02:00:00,Main Library,Academic Services,MTR-LIB-01,116.07,156.18,15.09,118,Off-Peak,False,Cloudy
+2026-09-04 02:00:00,Student Union,Student Affairs,MTR-STU-01,114.24,146.45,14.85,192,Off-Peak,False,Cloudy
+2026-09-04 02:00:00,North Dormitory,Residential Life,MTR-RES-01,67.44,84.67,8.09,131,Off-Peak,False,Cloudy
+2026-09-04 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,163.93,218.97,21.31,158,Off-Peak,False,Cloudy
+2026-09-05 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,271.92,334.41,38.07,83,Peak,True,Rainy
+2026-09-05 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,280.9,373.58,39.33,59,Peak,True,Rainy
+2026-09-05 14:00:00,Main Library,Academic Services,MTR-LIB-01,123.34,143.42,16.03,12,Peak,True,Rainy
+2026-09-05 14:00:00,Student Union,Student Affairs,MTR-STU-01,206.76,262.11,26.88,10,Peak,True,Rainy
+2026-09-05 14:00:00,North Dormitory,Residential Life,MTR-RES-01,248.38,288.56,29.81,204,Peak,True,Rainy
+2026-09-05 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,170.86,214.06,22.21,40,Peak,True,Rainy
+2026-09-05 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,110.38,138.84,15.45,89,Off-Peak,True,Rainy
+2026-09-05 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,159.16,201.38,22.28,36,Off-Peak,True,Rainy
+2026-09-05 02:00:00,Main Library,Academic Services,MTR-LIB-01,63.4,78.07,8.24,20,Off-Peak,True,Rainy
+2026-09-05 02:00:00,Student Union,Student Affairs,MTR-STU-01,97.65,119.22,12.69,55,Off-Peak,True,Rainy
+2026-09-05 02:00:00,North Dormitory,Residential Life,MTR-RES-01,119.67,138.92,14.36,296,Off-Peak,True,Rainy
+2026-09-05 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,64.26,83.26,8.35,98,Off-Peak,True,Rainy
+2026-09-06 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,217.59,258.51,30.46,59,Peak,True,Sunny
+2026-09-06 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,287.83,347.04,40.3,37,Peak,True,Sunny
+2026-09-06 14:00:00,Main Library,Academic Services,MTR-LIB-01,176.01,218.01,22.88,104,Peak,True,Sunny
+2026-09-06 14:00:00,Student Union,Student Affairs,MTR-STU-01,206.41,239.46,26.83,119,Peak,True,Sunny
+2026-09-06 14:00:00,North Dormitory,Residential Life,MTR-RES-01,262.8,353.15,31.54,327,Peak,True,Sunny
+2026-09-06 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,153.8,191.81,19.99,33,Peak,True,Sunny
+2026-09-06 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,105.94,123.07,14.83,51,Off-Peak,True,Sunny
+2026-09-06 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,165.78,199.44,23.21,96,Off-Peak,True,Sunny
+2026-09-06 02:00:00,Main Library,Academic Services,MTR-LIB-01,62.77,77.5,8.16,115,Off-Peak,True,Sunny
+2026-09-06 02:00:00,Student Union,Student Affairs,MTR-STU-01,112.41,141.77,14.61,89,Off-Peak,True,Sunny
+2026-09-06 02:00:00,North Dormitory,Residential Life,MTR-RES-01,83.77,101.31,10.05,286,Off-Peak,True,Sunny
+2026-09-06 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,86.8,112.8,11.28,16,Off-Peak,True,Sunny
+2026-09-07 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,375.82,501.3,52.61,262,Peak,False,Windy
+2026-09-07 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,362.51,453.71,50.75,390,Peak,False,Windy
+2026-09-07 14:00:00,Main Library,Academic Services,MTR-LIB-01,168.22,195.74,21.87,394,Peak,False,Windy
+2026-09-07 14:00:00,Student Union,Student Affairs,MTR-STU-01,295.57,395.57,38.42,277,Peak,False,Windy
+2026-09-07 14:00:00,North Dormitory,Residential Life,MTR-RES-01,187.1,216.65,22.45,82,Peak,False,Windy
+2026-09-07 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,315.18,398.09,40.97,176,Peak,False,Windy
+2026-09-07 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,151.62,194.67,21.23,79,Off-Peak,False,Windy
+2026-09-07 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,183.8,216.18,25.73,138,Off-Peak,False,Windy
+2026-09-07 02:00:00,Main Library,Academic Services,MTR-LIB-01,96.69,129.16,12.57,190,Off-Peak,False,Windy
+2026-09-07 02:00:00,Student Union,Student Affairs,MTR-STU-01,106.38,135.55,13.83,123,Off-Peak,False,Windy
+2026-09-07 02:00:00,North Dormitory,Residential Life,MTR-RES-01,64.8,81.49,7.78,113,Off-Peak,False,Windy
+2026-09-07 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,104.04,126.91,13.53,34,Off-Peak,False,Windy
+2026-09-08 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,356.51,421.23,49.91,383,Peak,False,Rainy
+2026-09-08 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,504.78,642.25,70.67,444,Peak,False,Rainy
+2026-09-08 14:00:00,Main Library,Academic Services,MTR-LIB-01,238.48,274.63,31.0,376,Peak,False,Rainy
+2026-09-08 14:00:00,Student Union,Student Affairs,MTR-STU-01,279.91,359.03,36.39,425,Peak,False,Rainy
+2026-09-08 14:00:00,North Dormitory,Residential Life,MTR-RES-01,147.09,172.55,17.65,92,Peak,False,Rainy
+2026-09-08 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,298.52,359.56,38.81,291,Peak,False,Rainy
+2026-09-08 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,188.63,224.61,26.41,136,Off-Peak,False,Rainy
+2026-09-08 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,183.63,229.12,25.71,185,Off-Peak,False,Rainy
+2026-09-08 02:00:00,Main Library,Academic Services,MTR-LIB-01,117.69,137.52,15.3,98,Off-Peak,False,Rainy
+2026-09-08 02:00:00,Student Union,Student Affairs,MTR-STU-01,124.43,143.18,16.18,161,Off-Peak,False,Rainy
+2026-09-08 02:00:00,North Dormitory,Residential Life,MTR-RES-01,86.55,104.07,10.39,155,Off-Peak,False,Rainy
+2026-09-08 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,134.22,165.83,17.45,24,Off-Peak,False,Rainy
+2026-09-09 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,460.11,592.72,64.42,109,Peak,False,Sunny
+2026-09-09 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,357.93,438.05,50.11,271,Peak,False,Sunny
+2026-09-09 14:00:00,Main Library,Academic Services,MTR-LIB-01,211.57,245.08,27.5,195,Peak,False,Sunny
+2026-09-09 14:00:00,Student Union,Student Affairs,MTR-STU-01,374.96,504.11,48.74,65,Peak,False,Sunny
+2026-09-09 14:00:00,North Dormitory,Residential Life,MTR-RES-01,167.2,215.09,20.06,316,Peak,False,Sunny
+2026-09-09 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,266.59,336.43,34.66,399,Peak,False,Sunny
+2026-09-09 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,209.38,272.17,29.31,189,Off-Peak,False,Sunny
+2026-09-09 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,180.94,213.96,25.33,166,Off-Peak,False,Sunny
+2026-09-09 02:00:00,Main Library,Academic Services,MTR-LIB-01,81.56,100.52,10.6,54,Off-Peak,False,Sunny
+2026-09-09 02:00:00,Student Union,Student Affairs,MTR-STU-01,168.15,219.68,21.86,96,Off-Peak,False,Sunny
+2026-09-09 02:00:00,North Dormitory,Residential Life,MTR-RES-01,87.88,113.98,10.55,67,Off-Peak,False,Sunny
+2026-09-09 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,105.96,136.72,13.77,91,Off-Peak,False,Sunny
+2026-09-10 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,444.55,531.01,62.24,376,Peak,False,Sunny
+2026-09-10 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,451.27,546.51,63.18,368,Peak,False,Sunny
+2026-09-10 14:00:00,Main Library,Academic Services,MTR-LIB-01,187.31,216.29,24.35,127,Peak,False,Sunny
+2026-09-10 14:00:00,Student Union,Student Affairs,MTR-STU-01,284.24,376.01,36.95,436,Peak,False,Sunny
+2026-09-10 14:00:00,North Dormitory,Residential Life,MTR-RES-01,160.12,204.68,19.21,209,Peak,False,Sunny
+2026-09-10 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,366.98,461.38,47.71,425,Peak,False,Sunny
+2026-09-10 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,139.84,187.96,19.58,54,Off-Peak,False,Sunny
+2026-09-10 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,252.79,304.13,35.39,42,Off-Peak,False,Sunny
+2026-09-10 02:00:00,Main Library,Academic Services,MTR-LIB-01,95.47,123.7,12.41,78,Off-Peak,False,Sunny
+2026-09-10 02:00:00,Student Union,Student Affairs,MTR-STU-01,146.67,183.67,19.07,91,Off-Peak,False,Sunny
+2026-09-10 02:00:00,North Dormitory,Residential Life,MTR-RES-01,84.1,101.0,10.09,150,Off-Peak,False,Sunny
+2026-09-10 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,94.62,126.33,12.3,119,Off-Peak,False,Sunny
+2026-09-11 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,355.56,413.87,49.78,315,Peak,False,Rainy
+2026-09-11 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,422.64,512.57,59.17,389,Peak,False,Rainy
+2026-09-11 14:00:00,Main Library,Academic Services,MTR-LIB-01,246.37,298.12,32.03,173,Peak,False,Rainy
+2026-09-11 14:00:00,Student Union,Student Affairs,MTR-STU-01,296.26,364.54,38.51,168,Peak,False,Rainy
+2026-09-11 14:00:00,North Dormitory,Residential Life,MTR-RES-01,146.46,180.74,17.58,426,Peak,False,Rainy
+2026-09-11 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,318.37,423.61,41.39,296,Peak,False,Rainy
+2026-09-11 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,154.88,195.08,21.68,22,Off-Peak,False,Rainy
+2026-09-11 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,185.9,229.77,26.03,126,Off-Peak,False,Rainy
+2026-09-11 02:00:00,Main Library,Academic Services,MTR-LIB-01,107.35,133.44,13.96,102,Off-Peak,False,Rainy
+2026-09-11 02:00:00,Student Union,Student Affairs,MTR-STU-01,120.17,149.57,15.62,184,Off-Peak,False,Rainy
+2026-09-11 02:00:00,North Dormitory,Residential Life,MTR-RES-01,92.99,110.09,11.16,37,Off-Peak,False,Rainy
+2026-09-11 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,131.61,168.01,17.11,82,Off-Peak,False,Rainy
+2026-09-12 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,267.22,319.31,37.41,31,Peak,True,Rainy
+2026-09-12 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,230.99,276.95,32.34,62,Peak,True,Rainy
+2026-09-12 14:00:00,Main Library,Academic Services,MTR-LIB-01,170.28,198.3,22.14,55,Peak,True,Rainy
+2026-09-12 14:00:00,Student Union,Student Affairs,MTR-STU-01,214.15,254.6,27.84,86,Peak,True,Rainy
+2026-09-12 14:00:00,North Dormitory,Residential Life,MTR-RES-01,224.37,268.97,26.92,200,Peak,True,Rainy
+2026-09-12 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,214.6,279.84,27.9,21,Peak,True,Rainy
+2026-09-12 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,107.21,127.06,15.01,115,Off-Peak,True,Rainy
+2026-09-12 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,135.71,157.43,19.0,37,Off-Peak,True,Rainy
+2026-09-12 02:00:00,Main Library,Academic Services,MTR-LIB-01,76.58,95.06,9.96,98,Off-Peak,True,Rainy
+2026-09-12 02:00:00,Student Union,Student Affairs,MTR-STU-01,98.03,132.1,12.74,75,Off-Peak,True,Rainy
+2026-09-12 02:00:00,North Dormitory,Residential Life,MTR-RES-01,124.03,164.75,14.88,307,Off-Peak,True,Rainy
+2026-09-12 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,85.05,111.94,11.06,70,Off-Peak,True,Rainy
+2026-09-13 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,275.51,342.99,38.57,38,Peak,True,Rainy
+2026-09-13 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,262.86,335.81,36.8,94,Peak,True,Rainy
+2026-09-13 14:00:00,Main Library,Academic Services,MTR-LIB-01,144.66,184.49,18.81,40,Peak,True,Rainy
+2026-09-13 14:00:00,Student Union,Student Affairs,MTR-STU-01,160.3,193.51,20.84,39,Peak,True,Rainy
+2026-09-13 14:00:00,North Dormitory,Residential Life,MTR-RES-01,204.72,257.54,24.57,234,Peak,True,Rainy
+2026-09-13 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,208.67,269.45,27.13,17,Peak,True,Rainy
+2026-09-13 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,106.29,133.77,14.88,55,Off-Peak,True,Rainy
+2026-09-13 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,115.68,142.75,16.2,109,Off-Peak,True,Rainy
+2026-09-13 02:00:00,Main Library,Academic Services,MTR-LIB-01,67.3,86.76,8.75,104,Off-Peak,True,Rainy
+2026-09-13 02:00:00,Student Union,Student Affairs,MTR-STU-01,102.33,125.46,13.3,10,Off-Peak,True,Rainy
+2026-09-13 02:00:00,North Dormitory,Residential Life,MTR-RES-01,93.75,121.94,11.25,343,Off-Peak,True,Rainy
+2026-09-13 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,81.04,105.31,10.54,70,Off-Peak,True,Rainy
+2026-09-14 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,451.61,563.45,63.23,159,Peak,False,Windy
+2026-09-14 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,456.84,560.9,63.96,317,Peak,False,Windy
+2026-09-14 14:00:00,Main Library,Academic Services,MTR-LIB-01,255.78,331.19,33.25,386,Peak,False,Windy
+2026-09-14 14:00:00,Student Union,Student Affairs,MTR-STU-01,372.93,502.02,48.48,263,Peak,False,Windy
+2026-09-14 14:00:00,North Dormitory,Residential Life,MTR-RES-01,216.62,274.76,25.99,315,Peak,False,Windy
+2026-09-14 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,223.43,276.1,29.05,396,Peak,False,Windy
+2026-09-14 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,145.22,174.56,20.33,81,Off-Peak,False,Windy
+2026-09-14 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,202.52,246.57,28.35,180,Off-Peak,False,Windy
+2026-09-14 02:00:00,Main Library,Academic Services,MTR-LIB-01,87.03,116.64,11.31,98,Off-Peak,False,Windy
+2026-09-14 02:00:00,Student Union,Student Affairs,MTR-STU-01,162.11,201.67,21.07,157,Off-Peak,False,Windy
+2026-09-14 02:00:00,North Dormitory,Residential Life,MTR-RES-01,62.86,84.26,7.54,62,Off-Peak,False,Windy
+2026-09-14 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,99.44,133.39,12.93,29,Off-Peak,False,Windy
+2026-09-15 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,460.93,548.45,64.53,58,Peak,False,Sunny
+2026-09-15 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,383.52,450.73,53.69,317,Peak,False,Sunny
+2026-09-15 14:00:00,Main Library,Academic Services,MTR-LIB-01,227.68,271.76,29.6,329,Peak,False,Sunny
+2026-09-15 14:00:00,Student Union,Student Affairs,MTR-STU-01,350.03,414.28,45.5,292,Peak,False,Sunny
+2026-09-15 14:00:00,North Dormitory,Residential Life,MTR-RES-01,202.31,237.29,24.28,377,Peak,False,Sunny
+2026-09-15 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,364.36,426.89,47.37,60,Peak,False,Sunny
+2026-09-15 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,155.77,200.24,21.81,194,Off-Peak,False,Sunny
+2026-09-15 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,196.77,254.42,27.55,36,Off-Peak,False,Sunny
+2026-09-15 02:00:00,Main Library,Academic Services,MTR-LIB-01,109.29,139.39,14.21,40,Off-Peak,False,Sunny
+2026-09-15 02:00:00,Student Union,Student Affairs,MTR-STU-01,157.89,208.42,20.53,130,Off-Peak,False,Sunny
+2026-09-15 02:00:00,North Dormitory,Residential Life,MTR-RES-01,65.65,88.42,7.88,163,Off-Peak,False,Sunny
+2026-09-15 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,119.5,147.66,15.54,89,Off-Peak,False,Sunny
+2026-09-16 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,406.56,468.57,56.92,218,Peak,False,Windy
+2026-09-16 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,457.84,566.21,64.1,194,Peak,False,Windy
+2026-09-16 14:00:00,Main Library,Academic Services,MTR-LIB-01,266.99,331.59,34.71,111,Peak,False,Windy
+2026-09-16 14:00:00,Student Union,Student Affairs,MTR-STU-01,261.42,327.91,33.98,310,Peak,False,Windy
+2026-09-16 14:00:00,North Dormitory,Residential Life,MTR-RES-01,190.43,254.02,22.85,359,Peak,False,Windy
+2026-09-16 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,284.38,374.0,36.97,286,Peak,False,Windy
+2026-09-16 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,156.61,187.79,21.93,190,Off-Peak,False,Windy
+2026-09-16 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,185.11,229.57,25.92,157,Off-Peak,False,Windy
+2026-09-16 02:00:00,Main Library,Academic Services,MTR-LIB-01,102.77,131.92,13.36,83,Off-Peak,False,Windy
+2026-09-16 02:00:00,Student Union,Student Affairs,MTR-STU-01,139.12,169.03,18.09,110,Off-Peak,False,Windy
+2026-09-16 02:00:00,North Dormitory,Residential Life,MTR-RES-01,75.12,90.27,9.01,72,Off-Peak,False,Windy
+2026-09-16 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,137.42,182.22,17.86,122,Off-Peak,False,Windy
+2026-09-17 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,460.65,537.64,64.49,338,Peak,False,Windy
+2026-09-17 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,457.49,595.48,64.05,326,Peak,False,Windy
+2026-09-17 14:00:00,Main Library,Academic Services,MTR-LIB-01,237.51,296.45,30.88,367,Peak,False,Windy
+2026-09-17 14:00:00,Student Union,Student Affairs,MTR-STU-01,248.96,297.34,32.36,326,Peak,False,Windy
+2026-09-17 14:00:00,North Dormitory,Residential Life,MTR-RES-01,162.56,205.85,19.51,239,Peak,False,Windy
+2026-09-17 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,294.95,364.29,38.34,348,Peak,False,Windy
+2026-09-17 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,157.29,202.99,22.02,71,Off-Peak,False,Windy
+2026-09-17 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,182.39,214.15,25.53,57,Off-Peak,False,Windy
+2026-09-17 02:00:00,Main Library,Academic Services,MTR-LIB-01,78.46,98.64,10.2,159,Off-Peak,False,Windy
+2026-09-17 02:00:00,Student Union,Student Affairs,MTR-STU-01,118.25,141.1,15.37,109,Off-Peak,False,Windy
+2026-09-17 02:00:00,North Dormitory,Residential Life,MTR-RES-01,90.1,121.21,10.81,116,Off-Peak,False,Windy
+2026-09-17 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,114.88,134.42,14.93,57,Off-Peak,False,Windy
+2026-09-18 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,354.96,429.66,49.69,333,Peak,False,Rainy
+2026-09-18 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,377.85,437.97,52.9,71,Peak,False,Rainy
+2026-09-18 14:00:00,Main Library,Academic Services,MTR-LIB-01,195.06,261.15,25.36,305,Peak,False,Rainy
+2026-09-18 14:00:00,Student Union,Student Affairs,MTR-STU-01,347.92,407.25,45.23,54,Peak,False,Rainy
+2026-09-18 14:00:00,North Dormitory,Residential Life,MTR-RES-01,160.59,200.05,19.27,186,Peak,False,Rainy
+2026-09-18 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,364.48,437.56,47.38,394,Peak,False,Rainy
+2026-09-18 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,139.74,162.53,19.56,111,Off-Peak,False,Rainy
+2026-09-18 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,214.63,276.29,30.05,49,Off-Peak,False,Rainy
+2026-09-18 02:00:00,Main Library,Academic Services,MTR-LIB-01,115.8,155.15,15.05,37,Off-Peak,False,Rainy
+2026-09-18 02:00:00,Student Union,Student Affairs,MTR-STU-01,122.5,154.55,15.93,97,Off-Peak,False,Rainy
+2026-09-18 02:00:00,North Dormitory,Residential Life,MTR-RES-01,84.89,108.12,10.19,162,Off-Peak,False,Rainy
+2026-09-18 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,121.89,162.32,15.85,76,Off-Peak,False,Rainy
+2026-09-19 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,304.33,368.57,42.61,78,Peak,True,Windy
+2026-09-19 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,314.68,408.46,44.06,114,Peak,True,Windy
+2026-09-19 14:00:00,Main Library,Academic Services,MTR-LIB-01,120.21,143.31,15.63,82,Peak,True,Windy
+2026-09-19 14:00:00,Student Union,Student Affairs,MTR-STU-01,168.06,199.11,21.85,18,Peak,True,Windy
+2026-09-19 14:00:00,North Dormitory,Residential Life,MTR-RES-01,169.05,209.64,20.29,243,Peak,True,Windy
+2026-09-19 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,160.57,207.36,20.87,87,Peak,True,Windy
+2026-09-19 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,108.73,139.99,15.22,111,Off-Peak,True,Windy
+2026-09-19 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,153.07,195.17,21.43,82,Off-Peak,True,Windy
+2026-09-19 02:00:00,Main Library,Academic Services,MTR-LIB-01,79.57,98.27,10.34,69,Off-Peak,True,Windy
+2026-09-19 02:00:00,Student Union,Student Affairs,MTR-STU-01,97.15,129.37,12.63,100,Off-Peak,True,Windy
+2026-09-19 02:00:00,North Dormitory,Residential Life,MTR-RES-01,79.55,94.12,9.55,312,Off-Peak,True,Windy
+2026-09-19 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,88.06,106.35,11.45,23,Off-Peak,True,Windy
+2026-09-20 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,270.37,361.9,37.85,65,Peak,True,Cloudy
+2026-09-20 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,298.11,347.62,41.74,14,Peak,True,Cloudy
+2026-09-20 14:00:00,Main Library,Academic Services,MTR-LIB-01,137.7,167.23,17.9,37,Peak,True,Cloudy
+2026-09-20 14:00:00,Student Union,Student Affairs,MTR-STU-01,161.65,217.0,21.01,101,Peak,True,Cloudy
+2026-09-20 14:00:00,North Dormitory,Residential Life,MTR-RES-01,233.46,312.87,28.02,300,Peak,True,Cloudy
+2026-09-20 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,164.53,190.53,21.39,93,Peak,True,Cloudy
+2026-09-20 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,109.6,140.32,15.34,110,Off-Peak,True,Cloudy
+2026-09-20 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,114.05,144.51,15.97,79,Off-Peak,True,Cloudy
+2026-09-20 02:00:00,Main Library,Academic Services,MTR-LIB-01,64.06,74.84,8.33,48,Off-Peak,True,Cloudy
+2026-09-20 02:00:00,Student Union,Student Affairs,MTR-STU-01,83.36,107.04,10.84,104,Off-Peak,True,Cloudy
+2026-09-20 02:00:00,North Dormitory,Residential Life,MTR-RES-01,92.63,119.38,11.12,341,Off-Peak,True,Cloudy
+2026-09-20 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,99.5,125.37,12.94,60,Off-Peak,True,Cloudy
+2026-09-21 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,335.43,393.52,46.96,359,Peak,False,Cloudy
+2026-09-21 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,540.28,710.46,75.64,50,Peak,False,Cloudy
+2026-09-21 14:00:00,Main Library,Academic Services,MTR-LIB-01,264.32,328.39,34.36,71,Peak,False,Cloudy
+2026-09-21 14:00:00,Student Union,Student Affairs,MTR-STU-01,312.77,398.63,40.66,249,Peak,False,Cloudy
+2026-09-21 14:00:00,North Dormitory,Residential Life,MTR-RES-01,174.78,202.8,20.97,156,Peak,False,Cloudy
+2026-09-21 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,230.96,278.91,30.02,402,Peak,False,Cloudy
+2026-09-21 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,169.76,196.2,23.77,135,Off-Peak,False,Cloudy
+2026-09-21 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,236.63,305.72,33.13,78,Off-Peak,False,Cloudy
+2026-09-21 02:00:00,Main Library,Academic Services,MTR-LIB-01,72.74,89.59,9.46,62,Off-Peak,False,Cloudy
+2026-09-21 02:00:00,Student Union,Student Affairs,MTR-STU-01,162.54,190.61,21.13,192,Off-Peak,False,Cloudy
+2026-09-21 02:00:00,North Dormitory,Residential Life,MTR-RES-01,86.98,102.71,10.44,190,Off-Peak,False,Cloudy
+2026-09-21 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,115.51,149.13,15.02,97,Off-Peak,False,Cloudy
+2026-09-22 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,466.44,559.14,65.3,270,Peak,False,Overcast
+2026-09-22 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,434.39,579.64,60.81,253,Peak,False,Overcast
+2026-09-22 14:00:00,Main Library,Academic Services,MTR-LIB-01,265.52,351.23,34.52,160,Peak,False,Overcast
+2026-09-22 14:00:00,Student Union,Student Affairs,MTR-STU-01,353.5,435.86,45.95,423,Peak,False,Overcast
+2026-09-22 14:00:00,North Dormitory,Residential Life,MTR-RES-01,180.7,237.46,21.68,163,Peak,False,Overcast
+2026-09-22 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,257.77,326.69,33.51,449,Peak,False,Overcast
+2026-09-22 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,170.16,200.74,23.82,119,Off-Peak,False,Overcast
+2026-09-22 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,191.67,241.58,26.83,120,Off-Peak,False,Overcast
+2026-09-22 02:00:00,Main Library,Academic Services,MTR-LIB-01,96.59,117.29,12.56,56,Off-Peak,False,Overcast
+2026-09-22 02:00:00,Student Union,Student Affairs,MTR-STU-01,152.83,193.23,19.87,64,Off-Peak,False,Overcast
+2026-09-22 02:00:00,North Dormitory,Residential Life,MTR-RES-01,92.16,106.79,11.06,156,Off-Peak,False,Overcast
+2026-09-22 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,145.28,190.65,18.89,91,Off-Peak,False,Overcast
+2026-09-23 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,379.16,438.84,53.08,250,Peak,False,Rainy
+2026-09-23 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,479.84,635.28,67.18,399,Peak,False,Rainy
+2026-09-23 14:00:00,Main Library,Academic Services,MTR-LIB-01,212.84,267.15,27.67,232,Peak,False,Rainy
+2026-09-23 14:00:00,Student Union,Student Affairs,MTR-STU-01,343.37,423.03,44.64,311,Peak,False,Rainy
+2026-09-23 14:00:00,North Dormitory,Residential Life,MTR-RES-01,148.89,185.2,17.87,437,Peak,False,Rainy
+2026-09-23 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,264.17,340.39,34.34,309,Peak,False,Rainy
+2026-09-23 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,199.49,263.42,27.93,177,Off-Peak,False,Rainy
+2026-09-23 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,195.12,236.75,27.32,151,Off-Peak,False,Rainy
+2026-09-23 02:00:00,Main Library,Academic Services,MTR-LIB-01,113.01,149.68,14.69,28,Off-Peak,False,Rainy
+2026-09-23 02:00:00,Student Union,Student Affairs,MTR-STU-01,110.37,140.86,14.35,188,Off-Peak,False,Rainy
+2026-09-23 02:00:00,North Dormitory,Residential Life,MTR-RES-01,101.15,131.43,12.14,100,Off-Peak,False,Rainy
+2026-09-23 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,101.59,129.7,13.21,179,Off-Peak,False,Rainy
+2026-09-24 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,319.95,387.11,44.79,61,Peak,False,Overcast
+2026-09-24 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,421.36,489.29,58.99,193,Peak,False,Overcast
+2026-09-24 14:00:00,Main Library,Academic Services,MTR-LIB-01,211.68,253.77,27.52,214,Peak,False,Overcast
+2026-09-24 14:00:00,Student Union,Student Affairs,MTR-STU-01,337.27,400.01,43.85,120,Peak,False,Overcast
+2026-09-24 14:00:00,North Dormitory,Residential Life,MTR-RES-01,189.85,232.85,22.78,323,Peak,False,Overcast
+2026-09-24 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,289.63,366.85,37.65,142,Peak,False,Overcast
+2026-09-24 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,182.17,226.24,25.5,142,Off-Peak,False,Overcast
+2026-09-24 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,246.49,306.4,34.51,74,Off-Peak,False,Overcast
+2026-09-24 02:00:00,Main Library,Academic Services,MTR-LIB-01,101.52,118.25,13.2,192,Off-Peak,False,Overcast
+2026-09-24 02:00:00,Student Union,Student Affairs,MTR-STU-01,172.42,208.6,22.41,195,Off-Peak,False,Overcast
+2026-09-24 02:00:00,North Dormitory,Residential Life,MTR-RES-01,88.71,110.12,10.65,76,Off-Peak,False,Overcast
+2026-09-24 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,166.45,219.83,21.64,41,Off-Peak,False,Overcast
+2026-09-25 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,392.95,497.07,55.01,447,Peak,False,Overcast
+2026-09-25 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,414.95,558.35,58.09,313,Peak,False,Overcast
+2026-09-25 14:00:00,Main Library,Academic Services,MTR-LIB-01,192.94,243.72,25.08,324,Peak,False,Overcast
+2026-09-25 14:00:00,Student Union,Student Affairs,MTR-STU-01,346.7,402.11,45.07,292,Peak,False,Overcast
+2026-09-25 14:00:00,North Dormitory,Residential Life,MTR-RES-01,179.71,239.16,21.57,164,Peak,False,Overcast
+2026-09-25 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,337.82,429.51,43.92,190,Peak,False,Overcast
+2026-09-25 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,182.07,231.99,25.49,144,Off-Peak,False,Overcast
+2026-09-25 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,228.87,293.37,32.04,173,Off-Peak,False,Overcast
+2026-09-25 02:00:00,Main Library,Academic Services,MTR-LIB-01,105.93,140.96,13.77,138,Off-Peak,False,Overcast
+2026-09-25 02:00:00,Student Union,Student Affairs,MTR-STU-01,126.6,156.75,16.46,126,Off-Peak,False,Overcast
+2026-09-25 02:00:00,North Dormitory,Residential Life,MTR-RES-01,90.41,105.6,10.85,75,Off-Peak,False,Overcast
+2026-09-25 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,148.32,175.78,19.28,46,Off-Peak,False,Overcast
+2026-09-26 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,291.05,356.0,40.75,65,Peak,True,Windy
+2026-09-26 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,266.47,315.21,37.31,110,Peak,True,Windy
+2026-09-26 14:00:00,Main Library,Academic Services,MTR-LIB-01,177.65,238.67,23.09,42,Peak,True,Windy
+2026-09-26 14:00:00,Student Union,Student Affairs,MTR-STU-01,237.61,311.47,30.89,61,Peak,True,Windy
+2026-09-26 14:00:00,North Dormitory,Residential Life,MTR-RES-01,177.22,230.53,21.27,301,Peak,True,Windy
+2026-09-26 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,206.64,254.06,26.86,103,Peak,True,Windy
+2026-09-26 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,114.17,133.36,15.98,53,Off-Peak,True,Windy
+2026-09-26 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,119.39,140.25,16.71,50,Off-Peak,True,Windy
+2026-09-26 02:00:00,Main Library,Academic Services,MTR-LIB-01,73.09,87.89,9.5,51,Off-Peak,True,Windy
+2026-09-26 02:00:00,Student Union,Student Affairs,MTR-STU-01,96.75,118.45,12.58,84,Off-Peak,True,Windy
+2026-09-26 02:00:00,North Dormitory,Residential Life,MTR-RES-01,99.81,127.15,11.98,249,Off-Peak,True,Windy
+2026-09-26 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,89.98,115.13,11.7,79,Off-Peak,True,Windy
+2026-09-27 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,294.9,356.96,41.29,54,Peak,True,Overcast
+2026-09-27 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,247.49,331.45,34.65,43,Peak,True,Overcast
+2026-09-27 14:00:00,Main Library,Academic Services,MTR-LIB-01,142.42,166.55,18.51,107,Peak,True,Overcast
+2026-09-27 14:00:00,Student Union,Student Affairs,MTR-STU-01,165.98,205.94,21.58,83,Peak,True,Overcast
+2026-09-27 14:00:00,North Dormitory,Residential Life,MTR-RES-01,252.35,337.95,30.28,311,Peak,True,Overcast
+2026-09-27 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,152.57,188.12,19.83,20,Peak,True,Overcast
+2026-09-27 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,110.59,136.21,15.48,114,Off-Peak,True,Overcast
+2026-09-27 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,104.48,127.89,14.63,58,Off-Peak,True,Overcast
+2026-09-27 02:00:00,Main Library,Academic Services,MTR-LIB-01,80.16,105.9,10.42,20,Off-Peak,True,Overcast
+2026-09-27 02:00:00,Student Union,Student Affairs,MTR-STU-01,98.82,124.4,12.85,117,Off-Peak,True,Overcast
+2026-09-27 02:00:00,North Dormitory,Residential Life,MTR-RES-01,94.1,115.71,11.29,218,Off-Peak,True,Overcast
+2026-09-27 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,101.11,125.47,13.14,82,Off-Peak,True,Overcast
+2026-09-28 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,464.8,539.22,65.07,183,Peak,False,Windy
+2026-09-28 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,567.54,742.0,79.46,132,Peak,False,Windy
+2026-09-28 14:00:00,Main Library,Academic Services,MTR-LIB-01,259.58,327.29,33.75,284,Peak,False,Windy
+2026-09-28 14:00:00,Student Union,Student Affairs,MTR-STU-01,356.96,427.14,46.4,359,Peak,False,Windy
+2026-09-28 14:00:00,North Dormitory,Residential Life,MTR-RES-01,205.98,261.43,24.72,160,Peak,False,Windy
+2026-09-28 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,367.44,495.13,47.77,266,Peak,False,Windy
+2026-09-28 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,195.18,228.75,27.33,178,Off-Peak,False,Windy
+2026-09-28 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,170.55,208.35,23.88,164,Off-Peak,False,Windy
+2026-09-28 02:00:00,Main Library,Academic Services,MTR-LIB-01,103.8,119.7,13.49,70,Off-Peak,False,Windy
+2026-09-28 02:00:00,Student Union,Student Affairs,MTR-STU-01,114.31,141.08,14.86,42,Off-Peak,False,Windy
+2026-09-28 02:00:00,North Dormitory,Residential Life,MTR-RES-01,63.32,78.49,7.6,87,Off-Peak,False,Windy
+2026-09-28 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,137.24,170.23,17.84,62,Off-Peak,False,Windy
+2026-09-29 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,297.81,389.13,41.69,396,Peak,False,Windy
+2026-09-29 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,464.72,577.0,65.06,435,Peak,False,Windy
+2026-09-29 14:00:00,Main Library,Academic Services,MTR-LIB-01,167.3,208.42,21.75,210,Peak,False,Windy
+2026-09-29 14:00:00,Student Union,Student Affairs,MTR-STU-01,337.91,421.73,43.93,413,Peak,False,Windy
+2026-09-29 14:00:00,North Dormitory,Residential Life,MTR-RES-01,141.61,165.14,16.99,293,Peak,False,Windy
+2026-09-29 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,220.51,265.72,28.67,303,Peak,False,Windy
+2026-09-29 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,174.92,212.53,24.49,201,Off-Peak,False,Windy
+2026-09-29 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,210.03,260.59,29.4,131,Off-Peak,False,Windy
+2026-09-29 02:00:00,Main Library,Academic Services,MTR-LIB-01,77.36,99.82,10.06,176,Off-Peak,False,Windy
+2026-09-29 02:00:00,Student Union,Student Affairs,MTR-STU-01,149.69,195.16,19.46,152,Off-Peak,False,Windy
+2026-09-29 02:00:00,North Dormitory,Residential Life,MTR-RES-01,69.46,86.15,8.34,63,Off-Peak,False,Windy
+2026-09-29 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,118.9,147.52,15.46,97,Off-Peak,False,Windy
+2026-09-30 14:00:00,Engineering Hall,Engineering,MTR-ENG-01,346.26,419.84,48.48,151,Peak,False,Sunny
+2026-09-30 14:00:00,Science Center,Natural Sciences,MTR-SCI-01,559.79,720.65,78.37,239,Peak,False,Sunny
+2026-09-30 14:00:00,Main Library,Academic Services,MTR-LIB-01,170.95,199.51,22.22,222,Peak,False,Sunny
+2026-09-30 14:00:00,Student Union,Student Affairs,MTR-STU-01,346.69,424.53,45.07,102,Peak,False,Sunny
+2026-09-30 14:00:00,North Dormitory,Residential Life,MTR-RES-01,140.4,188.32,16.85,274,Peak,False,Sunny
+2026-09-30 14:00:00,Athletics Complex,Athletics,MTR-ATH-01,317.2,390.84,41.24,399,Peak,False,Sunny
+2026-09-30 02:00:00,Engineering Hall,Engineering,MTR-ENG-01,206.73,255.23,28.94,187,Off-Peak,False,Sunny
+2026-09-30 02:00:00,Science Center,Natural Sciences,MTR-SCI-01,162.59,196.33,22.76,78,Off-Peak,False,Sunny
+2026-09-30 02:00:00,Main Library,Academic Services,MTR-LIB-01,77.59,97.1,10.09,50,Off-Peak,False,Sunny
+2026-09-30 02:00:00,Student Union,Student Affairs,MTR-STU-01,138.3,182.48,17.98,85,Off-Peak,False,Sunny
+2026-09-30 02:00:00,North Dormitory,Residential Life,MTR-RES-01,83.28,97.69,9.99,72,Off-Peak,False,Sunny
+2026-09-30 02:00:00,Athletics Complex,Athletics,MTR-ATH-01,110.78,136.9,14.4,123,Off-Peak,False,Sunny
