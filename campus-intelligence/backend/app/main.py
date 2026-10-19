@@ -40,6 +40,20 @@ app.add_middleware(
 # Include routes
 app.include_router(router, prefix="/api")
 
+@app.get("/health")
+async def root_health():
+    from app.gemma_service import gemma_service
+    ollama_ok = gemma_service.is_ollama_available()
+    summary = data_loader.get_summary()
+    return {
+        "status": "healthy",
+        "backend": "FastAPI",
+        "ollama_connected": ollama_ok,
+        "dataset_loaded": summary.total_records > 0,
+        "current_dataset": summary.filename,
+        "total_records": summary.total_records
+    }
+
 @app.on_event("startup")
 async def startup_event():
     success = data_loader.load_default()

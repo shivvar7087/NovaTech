@@ -11,10 +11,14 @@ def run_all_tests():
     client = TestClient(app)
 
     print("=" * 60)
-    print("[TEST 1] Testing GET / (Root Endpoint)")
+    print("[TEST 1] Testing GET / (Root Endpoint / SPA or API Info)")
     res = client.get("/")
     assert res.status_code == 200, f"Root failed: {res.text}"
-    print("   [PASS] Root Response:", res.json())
+    content_type = res.headers.get("content-type", "")
+    if "application/json" in content_type:
+        print("   [PASS] Root API JSON Response:", res.json())
+    else:
+        print("   [PASS] Root SPA HTML Response: Successfully served React bundle index.html")
 
     print("\n[TEST 2] Testing GET /api/health (Health Check)")
     res = client.get("/api/health")

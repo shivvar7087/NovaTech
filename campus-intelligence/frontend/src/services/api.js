@@ -1,54 +1,92 @@
-const RAW_BASE = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || '/api';
-const API_BASE = RAW_BASE.replace(/\/$/, '');
+export function normalizeApiBase(url) {
+  if (!url) return '/api';
+  let cleaned = url.trim().replace(/\/+$/, '');
+  if (cleaned.startsWith('http://') || cleaned.startsWith('https://')) {
+    if (!cleaned.endsWith('/api')) {
+      cleaned = `${cleaned}/api`;
+    }
+  }
+  return cleaned;
+}
+
+export function getApiBase() {
+  if (typeof window !== 'undefined') {
+    const override = window.localStorage.getItem('CAMPUS_API_BASE');
+    if (override && override.trim()) {
+      return normalizeApiBase(override);
+    }
+  }
+  const rawBase = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || '/api';
+  return normalizeApiBase(rawBase);
+}
+
+export function setApiBaseOverride(newUrl) {
+  if (typeof window !== 'undefined') {
+    if (newUrl && newUrl.trim()) {
+      window.localStorage.setItem('CAMPUS_API_BASE', newUrl.trim());
+    } else {
+      window.localStorage.removeItem('CAMPUS_API_BASE');
+    }
+  }
+}
+
+export const API_BASE = getApiBase();
+
+async function handleResponse(res, fallbackMessage) {
+  const contentType = res.headers.get('content-type') || '';
+  if (!contentType.includes('application/json')) {
+    const text = await res.text();
+    if (text.includes('<!doctype') || text.includes('<html')) {
+      throw new Error(`API endpoint returned HTML instead of JSON. The backend is not connected at "${getApiBase()}".`);
+    }
+    throw new Error(fallbackMessage || `Server responded with ${res.status}`);
+  }
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail || fallbackMessage || `HTTP ${res.status}`);
+  }
+  return res.json();
+}
 
 export async function fetchHealth() {
-  const res = await fetch(`${API_BASE}/health`);
-  if (!res.ok) throw new Error('Backend health check failed');
-  return res.json();
+  const res = await fetch(`${getApiBase()}/health`);
+  return handleResponse(res, 'Backend health check failed');
 }
 
 export async function fetchDatasetSummary() {
-  const res = await fetch(`${API_BASE}/dataset/summary`);
-  if (!res.ok) throw new Error('Failed to fetch dataset summary');
-  return res.json();
+  const res = await fetch(`${getApiBase()}/dataset/summary`);
+  return handleResponse(res, 'Failed to fetch dataset summary');
 }
 
 export async function fetchDatasetSample(limit = 15) {
-  const res = await fetch(`${API_BASE}/dataset/sample?limit=${limit}`);
-  if (!res.ok) throw new Error('Failed to fetch sample records');
-  return res.json();
+  const res = await fetch(`${getApiBase()}/dataset/sample?limit=${limit}`);
+  return handleResponse(res, 'Failed to fetch sample records');
 }
 
 export async function fetchBuildings() {
-  const res = await fetch(`${API_BASE}/buildings`);
-  if (!res.ok) throw new Error('Failed to fetch buildings list');
-  return res.json();
+  const res = await fetch(`${getApiBase()}/buildings`);
+  return handleResponse(res, 'Failed to fetch buildings list');
 }
 
 export async function uploadDatasetFile(file) {
   const formData = new FormData();
   formData.append('file', file);
-  const res = await fetch(`${API_BASE}/dataset/upload`, {
+  const res = await fetch(`${getApiBase()}/dataset/upload`, {
     method: 'POST',
     body: formData,
   });
-  if (!res.ok) {
-    const errorData = await res.json().catch(() => ({}));
-    throw new Error(errorData.detail || 'Failed to upload dataset');
-  }
-  return res.json();
+  return handleResponse(res, 'Failed to upload dataset');
 }
 
 export async function resetDataset() {
-  const res = await fetch(`${API_BASE}/dataset/reset`, {
+  const res = await fetch(`${getApiBase()}/dataset/reset`, {
     method: 'POST',
   });
-  if (!res.ok) throw new Error('Failed to reset dataset');
-  return res.json();
+  return handleResponse(res, 'Failed to reset dataset');
 }
 
 export async function submitQuery(question, buildingFilter = null) {
-  const res = await fetch(`${API_BASE}/query`, {
+  const res = await fetch(`${getApiBase()}/query`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -56,10 +94,5 @@ export async function submitQuery(question, buildingFilter = null) {
       building_filter: buildingFilter || null,
     }),
   });
-  if (!res.ok) {
-    const errorData = await res.json().catch(() => ({}));
-    throw new Error(errorData.detail || 'Query processing failed');
-  }
-  return res.json();
+  return handleResponse(res, 'Query processing failed');
 }
-
