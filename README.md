@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.svg" alt="Campus Resource Intelligence Assistant Banner" width="100%" />
+</p>
+
 # Campus Resource Intelligence Assistant
 
 Campus Resource Intelligence Assistant is a local web application for exploring
@@ -9,6 +13,10 @@ interpretation through Ollama.
 The application is designed so that the language model interprets questions and
 writes explanations, while Pandas performs the numerical calculations used in
 the answer.
+
+<p align="center">
+  <img src="assets/dashboard-preview.svg" alt="Campus Resource Intelligence Dashboard Preview" width="100%" />
+</p>
 
 ## Features
 
@@ -24,6 +32,10 @@ the answer.
 - Rule-based interpretation and verified explanations when Ollama is unavailable
 
 ## Architecture
+
+<p align="center">
+  <img src="assets/architecture.svg" alt="End-to-End Verification and Architecture Diagram" width="100%" />
+</p>
 
 ```text
 React + Vite dashboard
@@ -42,6 +54,7 @@ offline, the backend uses its built-in pattern engine and verified analysis
 engine, so the dashboard remains usable.
 
 ## Project structure
+
 
 ```text
 campus-intelligence/
