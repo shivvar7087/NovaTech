@@ -1,0 +1,27 @@
+# ==============================================================================
+# Render Blueprint Configuration (Infrastructure-as-Code)
+# https://render.com/docs/blueprint-spec
+# ==============================================================================
+
+services:
+  # ----------------------------------------------------------------------------
+  # Full-Stack Web Service (FastAPI API + React Frontend bundled)
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: campus-resource-intelligence
+    runtime: python
+    plan: free
+    region: oregon
+    branch: main
+    buildCommand: "bash build.sh"
+    startCommand: "uvicorn app.main:app --app-dir campus-intelligence/backend --host 0.0.0.0 --port $PORT"
+    healthCheckPath: "/api/health"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: NODE_VERSION
+        value: 20.11.0
+      - key: OLLAMA_TIMEOUT
+        value: "4.0"
+      - key: CORS_ORIGINS
+        value: "*"

@@ -232,6 +232,15 @@ Example query request:
 }
 ```
 
+## Deployment to Render
+
+The repository is pre-configured for 1-click deployment on [Render](https://render.com/) using the included [`render.yaml`](./render.yaml) Blueprint:
+
+1. In the Render Dashboard, click **New +** → **Blueprint**.
+2. Connect your GitHub repository (`shivvar7087/NovaTech`).
+3. Render detects `render.yaml` and deploys the full-stack web service automatically.
+4. For manual configuration or custom domains, see the full [Render Deployment Guide](./RENDER_DEPLOYMENT.md).
+
 ## Development notes
 
 - Backend dependencies are listed in `backend/requirements.txt`.
