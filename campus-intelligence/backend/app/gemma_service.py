@@ -3,6 +3,7 @@ import re
 from typing import List, Optional, Tuple
 import urllib.request
 import urllib.error
+import urllib.parse
 from app.schemas import ParsedIntent, VerifiedResult
 
 import os
@@ -38,8 +39,20 @@ class GemmaService:
 
         self._last_check_time = now
         try:
+            # Fast TCP socket probe first (< 0.1s)
+            parsed = urllib.parse.urlparse(OLLAMA_BASE_URL)
+            host = parsed.hostname or "127.0.0.1"
+            port = parsed.port or 11434
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(0.15)
+            conn_res = sock.connect_ex((host, port))
+            sock.close()
+            if conn_res != 0:
+                self._cached_available = False
+                return False
+
             req = urllib.request.Request(OLLAMA_TAGS_URL, method="GET")
-            with urllib.request.urlopen(req, timeout=0.8) as response:
+            with urllib.request.urlopen(req, timeout=0.6) as response:
                 self._cached_available = (response.status == 200)
                 return self._cached_available
         except Exception:

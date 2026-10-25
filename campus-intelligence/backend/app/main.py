@@ -1,4 +1,11 @@
 import os
+import sys
+
+# Ensure backend directory is always in sys.path
+backend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if backend_dir not in sys.path:
+    sys.path.insert(0, backend_dir)
+
 try:
     from dotenv import load_dotenv
     load_dotenv()
@@ -19,19 +26,19 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Enable CORS for frontend development
+# Enable CORS for all environments (Netlify, local dev, custom domains)
 cors_env = os.getenv("CORS_ORIGINS", "")
 allowed_origins = [orig.strip() for orig in cors_env.split(",") if orig.strip()] if cors_env else [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "*"
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origins=allowed_origins if allowed_origins else ["*"],
+    allow_origin_regex=r"https?://.*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -49,6 +56,7 @@ async def root_health():
         "status": "healthy",
         "backend": "FastAPI",
         "ollama_connected": ollama_ok,
+        "ollama_model": gemma_service.model_name if ollama_ok else "Not running (using rule engine)",
         "dataset_loaded": summary.total_records > 0,
         "current_dataset": summary.filename,
         "total_records": summary.total_records
@@ -94,4 +102,12 @@ else:
             "docs_url": "/docs",
             "health_check": "/api/health"
         }
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.getenv("PORT", 8000))
+    host = os.getenv("HOST", "0.0.0.0")
+    print(f"Starting server on http://{host}:{port}")
+    uvicorn.run("app.main:app", host=host, port=port, reload=True)
+
 

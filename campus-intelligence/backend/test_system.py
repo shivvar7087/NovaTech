@@ -1,11 +1,21 @@
 import io
+import os
 import sys
+
+# Ensure utf-8 stdout on Windows
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
+# Ensure backend directory is in sys.path so 'app' can be imported from any working directory
+backend_dir = os.path.dirname(os.path.abspath(__file__))
+if backend_dir not in sys.path:
+    sys.path.insert(0, backend_dir)
+
 from fastapi.testclient import TestClient
 from app.main import app
-
-# Ensure utf-8 stdout
-if sys.platform == "win32":
-    sys.stdout.reconfigure(encoding="utf-8")
 
 def run_all_tests():
     client = TestClient(app)
