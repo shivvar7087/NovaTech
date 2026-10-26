@@ -1398,12 +1398,12 @@ Verification: 100% of mathematical figures calculated deterministically by Pytho
           </div>
 
           {/* Dataset Preview */}
-          {previewRecords && previewRecords.length > 0 && (
-            <div style={{ marginTop: '20px' }}>
+          {(allRecords?.length > 0 || previewRecords?.length > 0) && (
+            <div style={{ marginTop: '20px', width: '100%', maxWidth: '100%', overflow: 'hidden' }}>
               <DataTable
-                records={previewRecords}
-                title={`Raw Dataset Preview: ${datasetSummary?.filename || 'campus_electricity.csv'}`}
-                subtitle="Showing first 20 records"
+                records={allRecords?.length > 0 ? allRecords : previewRecords}
+                title={`Dataset Records: ${datasetSummary?.filename || 'campus_electricity.csv'}`}
+                subtitle={`Interactive range view across ${allRecords?.length || previewRecords?.length} records`}
               />
             </div>
           )}
