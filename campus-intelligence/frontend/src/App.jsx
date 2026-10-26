@@ -954,7 +954,7 @@ Verification: 100% of mathematical figures calculated deterministically by Pytho
               <h2>
                 Smarter Data.<br />
                 Better Decisions.<br />
-                <span>A Greener Campus.</span>
+                <span>Real Insights.</span>
               </h2>
               <p>
                 Upload campus datasets, ask questions in natural language, and discover evidence-backed insights about
@@ -1872,7 +1872,7 @@ Verification: 100% of mathematical figures calculated deterministically by Pytho
           <span>
             © 2026 <strong>Campus Resource Intelligence Platform</strong>
           </span>
-          <span>,<strong>Build By NovaTech(Shiv anuj,Sachin,Dhiraj,Avika)</strong> </span>
+          <span>,<strong>Build By NovaTech(Shiv anuj,Sachin,Dhiraj,Avika)a </strong> </span>
           <span>
             Modern UI · Responsive layout · Data-driven decisions
           </span>
