@@ -254,7 +254,16 @@ export default function App() {
   const [previewRecords, setPreviewRecords] = useState([]);
   const [queryResponse, setQueryResponse] = useState(null);
   const [loadingQuery, setLoadingQuery] = useState(false);
-  const [theme, setTheme] = useState(() => window.localStorage.getItem('campus-theme') || 'light');
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = window.localStorage.getItem('campus-theme');
+      if (saved === 'dark' || saved === 'light') return saved;
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+    }
+    return 'light';
+  });
   const [toastMsg, setToastMsg] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
 
@@ -285,11 +294,43 @@ export default function App() {
     initApp();
   }, []);
 
-  // Theme Sync
+  // Listen to Device / OS Environment Theme Changes
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleEnvThemeChange = (e) => {
+      const manual = window.localStorage.getItem('campus-theme-manual');
+      if (!manual) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    };
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleEnvThemeChange);
+      return () => mediaQuery.removeEventListener('change', handleEnvThemeChange);
+    } else if (mediaQuery.addListener) {
+      mediaQuery.addListener(handleEnvThemeChange);
+      return () => mediaQuery.removeListener(handleEnvThemeChange);
+    }
+  }, []);
+
+  // Theme Sync to Document Element, Storage and Mobile Meta Theme
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem('campus-theme', theme);
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.setAttribute('content', theme === 'dark' ? '#0c1224' : '#101a39');
+    }
   }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((curr) => {
+      const next = curr === 'dark' ? 'light' : 'dark';
+      window.localStorage.setItem('campus-theme', next);
+      window.localStorage.setItem('campus-theme-manual', 'true');
+      return next;
+    });
+  };
 
   // Auto-retry polling when offline
   useEffect(() => {
@@ -792,8 +833,9 @@ Verification: 100% of mathematical figures calculated deterministically by Pytho
 
             <button
               className="roundbtn"
-              title="Toggle theme"
-              onClick={() => setTheme((curr) => (curr === 'dark' ? 'light' : 'dark'))}
+              title={theme === 'dark' ? 'Environment: Dark Mode (Click to toggle Light)' : 'Environment: Light Mode (Click to toggle Dark)'}
+              onClick={toggleTheme}
+              aria-label="Toggle environment theme"
             >
               {theme === 'dark' ? '☀️' : '🌙'}
             </button>
@@ -1872,7 +1914,7 @@ Verification: 100% of mathematical figures calculated deterministically by Pytho
           <span>
             © 2026 <strong>Campus Resource Intelligence Platform</strong>
           </span>
-          <span>,<strong>Build By NovaTech(Shiv anuj,Sachin,Dhiraj,Avika)a </strong> </span>
+          <span>,<strong>Build By NovaTech(Shiv anuj,Sachin,Dhiraj,Avika) </strong> </span>
           <span>
             Modern UI · Responsive layout · Data-driven decisions
           </span>
