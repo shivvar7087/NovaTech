@@ -745,8 +745,15 @@ Verification: 100% of mathematical figures calculated deterministically by Pytho
   }, [uniqueEntities, activeMetric, groupKey]);
 
   // Headings based on active view
+  const currentHour = new Date().getHours();
+  const timeGreeting = currentHour < 12
+    ? 'Good morning'
+    : currentHour < 17
+      ? 'Good afternoon'
+      : 'Good evening';
+
   const viewHeadings = {
-    dashboard: ['Good afternoon,👋', "Here's what's happening across your campus today."],
+    dashboard: [`${timeGreeting}, 👋`, "Here's what's happening across your campus today."],
     upload: ['Upload & analyze campus data', 'Import CSV, Excel or JSON files to explore resource usage and community trends.'],
     ask: ['Ask Campus AI ✳', 'Ask questions about datasets in natural language and inspect the reasoning trail.'],
     insights: ['Detailed insights', 'Explore patterns, comparisons and data-backed recommendations.'],
