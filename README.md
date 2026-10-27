@@ -18,9 +18,7 @@ It pairs an executive gradient-accented React 18 interface with a high-performan
 
 ---
 
-<p align="center">
-  <img src="assets/dashboard-preview.svg" alt="Campus Resource Intelligence Dashboard Preview" width="100%" />
-</p>
+
 
 ---
 
@@ -266,4 +264,4 @@ The system enforces a strict boundary between language models and calculations:
 
 ## 📄 License
 
-This project is open-source and available under the **MIT License**.
+This project is open-source.
