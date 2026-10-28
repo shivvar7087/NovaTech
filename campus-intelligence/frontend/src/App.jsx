@@ -267,6 +267,12 @@ export default function App() {
   const [toastMsg, setToastMsg] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
 
+  // Upload & File Inspector state
+  const [isDragging, setIsDragging] = useState(false);
+  const [showFileInspector, setShowFileInspector] = useState(false);
+  const [fileInspectorTab, setFileInspectorTab] = useState('csv'); // 'csv' | 'schema' | 'json'
+  const [rawFileContent, setRawFileContent] = useState('');
+
   // Quick Ask inputs
   const [quickInput, setQuickInput] = useState('');
   const [askInput, setAskInput] = useState('');
@@ -478,70 +484,188 @@ export default function App() {
     }
   };
 
-  // Upload handler with client fallback
-  const handleFileUpload = async (e) => {
-    const file = e.target.files?.[0];
+  // Process uploaded File (both file picker input & drag-and-drop)
+  const processUploadedFile = async (file) => {
     if (!file) return;
     try {
-      const res = await uploadDatasetFile(file);
-      showToast(`Uploaded ${file.name} (${res.summary.total_records} rows)`);
-      setDatasetSummary(res.summary);
-      const samp = await fetchDatasetSample(500);
-      setAllRecords(samp.records || []);
-      setPreviewRecords((samp.records || []).slice(0, 20));
-      setQueryResponse(null);
+      // 1. Read raw text for File Inspector / download / copy
+      const text = await file.text();
+      setRawFileContent(text);
+
+      // 2. Attempt backend upload if connected
+      try {
+        const res = await uploadDatasetFile(file);
+        showToast(`✓ Uploaded ${file.name} (${res.summary.total_records} rows)`);
+        setDatasetSummary(res.summary);
+        const samp = await fetchDatasetSample(500);
+        setAllRecords(samp.records || []);
+        setPreviewRecords((samp.records || []).slice(0, 20));
+        setQueryResponse(null);
+        return;
+      } catch (backendErr) {
+        console.warn('Backend upload unavailable, parsing locally in browser:', backendErr);
+      }
+
+      // 3. Robust client-side fallback parsing
+      const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);
+      if (lines.length > 1) {
+        const headers = lines[0].split(',').map((h) => h.trim().replace(/^["']|["']$/g, ''));
+        const records = lines.slice(1, 1000).map((line) => {
+          const vals = line.split(',').map((v) => v.trim().replace(/^["']|["']$/g, ''));
+          const row = {};
+          headers.forEach((h, idx) => {
+            const val = vals[idx] ?? '';
+            const num = Number(val);
+            row[h] = !isNaN(num) && val !== '' ? num : val;
+          });
+          return row;
+        });
+        const buildings = Array.from(new Set(records.map((r) => r.building || r.facility || r.zone || r.location).filter(Boolean)));
+        const numCols = headers.filter((h) => typeof records[0]?.[h] === 'number');
+        const clientSummary = {
+          filename: file.name,
+          total_records: lines.length - 1,
+          buildings: buildings.length > 0 ? buildings : ['Campus Facility'],
+          metric_columns: numCols,
+          primary_metric: numCols[0] || 'kwh_usage',
+          total_kwh: records.reduce((acc, r) => acc + (Number(r[numCols[0]]) || 0), 0),
+          total_cost: records.reduce((acc, r) => acc + (Number(r['cost_usd'] || r['cost']) || 0), 0)
+        };
+        setAllRecords(records);
+        setPreviewRecords(records.slice(0, 20));
+        setDatasetSummary(clientSummary);
+        setQueryResponse(null);
+        showToast(`✓ Loaded ${file.name} (${records.length} records parsed)`);
+      }
     } catch (err) {
-      console.warn('Backend upload unavailable, parsing file in browser directly:', err);
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        try {
-          const text = event.target.result;
-          const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);
-          if (lines.length > 1) {
-            const headers = lines[0].split(',').map((h) => h.trim().replace(/^["']|["']$/g, ''));
-            const records = lines.slice(1, 250).map((line) => {
-              const vals = line.split(',').map((v) => v.trim().replace(/^["']|["']$/g, ''));
-              const row = {};
-              headers.forEach((h, idx) => {
-                const val = vals[idx] ?? '';
-                const num = Number(val);
-                row[h] = !isNaN(num) && val !== '' ? num : val;
-              });
-              return row;
-            });
-            const buildings = Array.from(new Set(records.map((r) => r.building || r.facility || r.zone).filter(Boolean)));
-            const numCols = headers.filter((h) => typeof records[0]?.[h] === 'number');
-            const clientSummary = {
-              filename: file.name,
-              total_records: lines.length - 1,
-              buildings: buildings.length > 0 ? buildings : ['Campus Facility'],
-              metric_columns: numCols,
-              primary_metric: numCols[0] || 'kwh_usage',
-              total_kwh: records.reduce((acc, r) => acc + (Number(r[numCols[0]]) || 0), 0),
-              total_cost: 0
-            };
-            setAllRecords(records);
-            setPreviewRecords(records.slice(0, 20));
-            setDatasetSummary(clientSummary);
-            setQueryResponse(null);
-            showToast(`Loaded ${file.name} (${records.length} records parsed locally)`);
-          }
-        } catch (parseErr) {
-          showToast('Could not parse CSV file: ' + parseErr.message);
-        }
-      };
-      reader.readAsText(file);
+      showToast('Could not process file: ' + err.message);
     }
+  };
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (file) processUploadedFile(file);
+    e.target.value = '';
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) processUploadedFile(file);
   };
 
   const handleReset = async () => {
     try {
       await resetDataset();
-      showToast('Reset to bundled campus_electricity.csv');
+      showToast('✓ Restored bundled campus_electricity.csv');
+      setRawFileContent('');
       await initApp();
     } catch (err) {
       console.warn('Backend reset failed, resetting client-side:', err);
+      setRawFileContent('');
       loadSampleDataset('electricity');
+    }
+  };
+
+  // Raw CSV Text memo for inspector, download, and copy
+  const currentCsvText = useMemo(() => {
+    if (rawFileContent) return rawFileContent;
+    if (!allRecords || allRecords.length === 0) return '';
+    const headers = Object.keys(allRecords[0]);
+    return [
+      headers.join(','),
+      ...allRecords.map((r) =>
+        headers
+          .map((h) => {
+            const val = r[h] ?? '';
+            return typeof val === 'string' && val.includes(',') ? `"${val}"` : String(val);
+          })
+          .join(',')
+      )
+    ].join('\n');
+  }, [rawFileContent, allRecords]);
+
+  // Column Profiler Schema
+  const columnProfiler = useMemo(() => {
+    if (!allRecords || allRecords.length === 0) return [];
+    const headers = Object.keys(allRecords[0]);
+    return headers.map((col) => {
+      const isNum = allRecords.some((r) => typeof r[col] === 'number');
+      let minVal = null;
+      let maxVal = null;
+      let sumVal = 0;
+      let nonNullCount = 0;
+      const uniqueVals = new Set();
+      const sampleVals = [];
+
+      allRecords.forEach((r) => {
+        const v = r[col];
+        if (v !== undefined && v !== null && v !== '') {
+          nonNullCount++;
+          uniqueVals.add(v);
+          if (sampleVals.length < 3 && !sampleVals.includes(String(v))) {
+            sampleVals.push(String(v));
+          }
+          if (typeof v === 'number') {
+            if (minVal === null || v < minVal) minVal = v;
+            if (maxVal === null || v > maxVal) maxVal = v;
+            sumVal += v;
+          }
+        }
+      });
+
+      return {
+        name: col,
+        type: isNum ? 'Number' : col.toLowerCase().includes('time') || col.toLowerCase().includes('date') ? 'Date/Time' : 'Text',
+        nonNullCount,
+        uniqueCount: uniqueVals.size,
+        min: minVal !== null ? (Number.isInteger(minVal) ? minVal : minVal.toFixed(2)) : '—',
+        max: maxVal !== null ? (Number.isInteger(maxVal) ? maxVal : maxVal.toFixed(2)) : '—',
+        avg: isNum && nonNullCount > 0 ? (sumVal / nonNullCount).toFixed(2) : '—',
+        sample: sampleVals.join(', ')
+      };
+    });
+  }, [allRecords]);
+
+  // Download the currently active file to open in Excel or local editor
+  const handleDownloadActiveFile = () => {
+    const filename = datasetSummary?.filename || 'campus_electricity.csv';
+    const csvContent = currentCsvText;
+    if (!csvContent) {
+      showToast('No active dataset content available to download.');
+      return;
+    }
+    downloadFile(filename.endsWith('.csv') ? filename : `${filename}.csv`, csvContent, 'text/csv');
+    showToast(`✓ Downloaded ${filename} successfully!`);
+  };
+
+  // Copy full CSV content to clipboard
+  const handleCopyCsv = () => {
+    const csvContent = currentCsvText;
+    if (!csvContent) {
+      showToast('No active dataset content available to copy.');
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(csvContent)
+        .then(() => showToast('✓ Copied active CSV data to clipboard!'))
+        .catch(() => showToast('Could not copy to clipboard.'));
+    } else {
+      showToast('Clipboard not supported in this browser.');
     }
   };
 
@@ -1305,17 +1429,104 @@ Verification: 100% of mathematical figures calculated deterministically by Pytho
               <h3>Upload & analyze campus data</h3>
               <p>Import CSV, Excel or JSON files to explore resource usage and community trends.</p>
             </div>
-            {datasetSummary?.total_records > 0 && (
-              <button className="btn" style={{ background: '#f87171', color: '#fff' }} onClick={handleReset}>
-                Reset to Bundled Dataset
+          </div>
+
+          {/* Active Dataset Control Hub (Reset, Open File, Download, Copy, AI & Insights Shortcuts) */}
+          <div className="card active-file-card">
+            <div className="active-file-head">
+              <div className="active-file-title">
+                <span className="file-type-icon">📄</span>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                    <h4>{datasetSummary?.filename || 'campus_electricity.csv'}</h4>
+                    <span className="pill" style={{ background: 'rgba(34, 197, 94, 0.15)', color: '#10b981' }}>
+                      ● Active in Memory
+                    </span>
+                  </div>
+                  <p className="active-file-sub">
+                    {allRecords.length || datasetSummary?.total_records || 360} rows &middot; {Object.keys(allRecords[0] || {}).length} columns &middot; {uniqueEntities.length} facilities monitored
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Toolbar: Open File, Download, Copy, Reset */}
+              <div className="active-file-actions">
+                <button
+                  className="btn primary"
+                  onClick={() => setShowFileInspector(true)}
+                  title="Open file viewer to inspect raw CSV, column types, and JSON preview"
+                >
+                  <span>👁️</span> Open File
+                </button>
+                <button
+                  className="btn light"
+                  onClick={handleDownloadActiveFile}
+                  title="Download and open file on your laptop or phone"
+                >
+                  <span>📥</span> Download File
+                </button>
+                <button
+                  className="btn light"
+                  onClick={handleCopyCsv}
+                  title="Copy full CSV text to clipboard"
+                >
+                  <span>📋</span> Copy CSV
+                </button>
+                <button
+                  className="btn"
+                  style={{ background: '#f87171', color: '#fff' }}
+                  onClick={handleReset}
+                  title="Reset active dataset back to default electricity data"
+                >
+                  <span>🔄</span> Reset Data
+                </button>
+              </div>
+            </div>
+
+            {/* Quick Navigation Shortcuts */}
+            <div className="active-file-shortcuts">
+              <span style={{ color: 'var(--muted)', fontWeight: 600 }}>Quick Actions:</span>
+              <button
+                className="textbtn"
+                onClick={() => {
+                  setActiveView('ask');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                <span>✳</span> Ask AI about this dataset &rarr;
               </button>
-            )}
+              <span style={{ color: 'var(--line)' }}>|</span>
+              <button
+                className="textbtn"
+                onClick={() => {
+                  setActiveView('insights');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                <span>▥</span> View Trends & Comparisons &rarr;
+              </button>
+              <span style={{ color: 'var(--line)' }}>|</span>
+              <button
+                className="textbtn"
+                onClick={() => {
+                  setFileInspectorTab('schema');
+                  setShowFileInspector(true);
+                }}
+              >
+                <span>🔬</span> Column Schema ({columnProfiler.length} cols) &rarr;
+              </button>
+            </div>
           </div>
 
           <div className="card">
-            <div className="dropzone">
-              <div className="dropicon">⇧</div>
-              <h4>Drag & drop your file here</h4>
+            <div
+              className={`dropzone ${isDragging ? 'dragging' : ''}`}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
+              <div className="dropicon">{isDragging ? '📂' : '⇧'}</div>
+              <h4>{isDragging ? 'Drop file to upload instantly' : 'Drag & drop your file here'}</h4>
               <p>CSV, XLSX or JSON · Auto-normalizes timestamps, building names, and metrics</p>
               <label className="filebutton">
                 Choose File
@@ -1323,7 +1534,7 @@ Verification: 100% of mathematical figures calculated deterministically by Pytho
               </label>
               <div className="filemsg">
                 Active dataset: <strong>{datasetSummary?.filename || 'campus_electricity.csv'}</strong> (
-                {datasetSummary?.total_records || 360} rows across {datasetSummary?.buildings?.length || 6} facilities)
+                {allRecords.length || datasetSummary?.total_records || 360} rows across {datasetSummary?.buildings?.length || uniqueEntities.length || 6} facilities)
               </div>
             </div>
 
@@ -1404,7 +1615,7 @@ Verification: 100% of mathematical figures calculated deterministically by Pytho
             </div>
           </div>
 
-          {/* Dataset Preview */}
+          {/* Dataset Preview with Range Segments */}
           {(allRecords?.length > 0 || previewRecords?.length > 0) && (
             <div style={{ marginTop: '20px', width: '100%', maxWidth: '100%', overflow: 'hidden' }}>
               <DataTable
@@ -1927,6 +2138,133 @@ Verification: 100% of mathematical figures calculated deterministically by Pytho
           </span>
         </footer>
       </main>
+
+      {/* ===== FILE INSPECTOR MODAL ===== */}
+      {showFileInspector && (
+        <div className="file-modal-backdrop" onClick={() => setShowFileInspector(false)}>
+          <div className="file-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="file-modal-head">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span style={{ fontSize: '24px' }}>📄</span>
+                <div>
+                  <h3 style={{ margin: 0, fontSize: '16px', color: 'var(--ink)' }}>
+                    File Inspector: {datasetSummary?.filename || 'campus_electricity.csv'}
+                  </h3>
+                  <div style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '2px' }}>
+                    {allRecords.length || datasetSummary?.total_records || 360} records &middot; {Object.keys(allRecords[0] || {}).length} columns &middot; UTF-8 encoded
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <button className="btn light" onClick={handleDownloadActiveFile} title="Download file to open in Excel">
+                  📥 Download
+                </button>
+                <button className="btn light" onClick={handleCopyCsv} title="Copy CSV to clipboard">
+                  📋 Copy
+                </button>
+                <button
+                  className="roundbtn"
+                  onClick={() => setShowFileInspector(false)}
+                  title="Close inspector"
+                  style={{ height: '32px', width: '32px', fontSize: '14px' }}
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Tabs */}
+            <div className="tabrow" style={{ margin: '12px 18px 0', borderBottom: '1px solid var(--line)' }}>
+              <button
+                className={fileInspectorTab === 'csv' ? 'active' : ''}
+                onClick={() => setFileInspectorTab('csv')}
+              >
+                📄 Raw CSV ({currentCsvText ? currentCsvText.split('\n').length : 0} lines)
+              </button>
+              <button
+                className={fileInspectorTab === 'schema' ? 'active' : ''}
+                onClick={() => setFileInspectorTab('schema')}
+              >
+                🔬 Column Profiler ({columnProfiler.length} columns)
+              </button>
+              <button
+                className={fileInspectorTab === 'json' ? 'active' : ''}
+                onClick={() => setFileInspectorTab('json')}
+              >
+                📋 JSON Format Preview
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="file-modal-body">
+              {fileInspectorTab === 'csv' && (
+                <div className="raw-code-box">
+                  <pre>{currentCsvText || 'No raw CSV content available.'}</pre>
+                </div>
+              )}
+
+              {fileInspectorTab === 'schema' && (
+                <div className="table-wrapper">
+                  <table className="data-table">
+                    <thead>
+                      <tr>
+                        <th>Column Name</th>
+                        <th>Inferred Type</th>
+                        <th>Non-Null</th>
+                        <th>Unique</th>
+                        <th>Min</th>
+                        <th>Max</th>
+                        <th>Average</th>
+                        <th>Sample Values</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {columnProfiler.map((col) => (
+                        <tr key={col.name}>
+                          <td><strong>{col.name}</strong></td>
+                          <td>
+                            <span className={`pill ${col.type === 'Number' ? 'info' : col.type === 'Date/Time' ? 'warn' : ''}`}>
+                              {col.type}
+                            </span>
+                          </td>
+                          <td>{col.nonNullCount}</td>
+                          <td>{col.uniqueCount}</td>
+                          <td>{col.min}</td>
+                          <td>{col.max}</td>
+                          <td>{col.avg}</td>
+                          <td style={{ color: 'var(--muted)', fontSize: '10.5px' }}>{col.sample}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              {fileInspectorTab === 'json' && (
+                <div className="raw-code-box">
+                  <pre>{JSON.stringify(allRecords.slice(0, 30), null, 2)}</pre>
+                  {allRecords.length > 30 && (
+                    <div style={{ padding: '8px', textAlign: 'center', color: 'var(--muted)', fontSize: '11px' }}>
+                      Showing first 30 of {allRecords.length} records. Download file to view complete records.
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="file-modal-foot">
+              <div style={{ fontSize: '11.5px', color: 'var(--muted)' }}>
+                Tip: You can open the downloaded file directly in Microsoft Excel, Apple Numbers, or Google Sheets.
+              </div>
+              <button className="btn primary" onClick={() => setShowFileInspector(false)}>
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Toast popup */}
       <div className={`toast ${toastVisible ? 'show' : ''}`}>
