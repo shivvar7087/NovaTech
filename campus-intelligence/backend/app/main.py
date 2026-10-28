@@ -73,11 +73,66 @@ async def startup_event():
     print("=" * 60)
 
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
+from fastapi import Request
 
 frontend_dist = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "dist"))
 if not os.path.exists(frontend_dist):
     frontend_dist = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "dist"))
+
+@app.get("/sitemap.xml", include_in_schema=False)
+async def get_sitemap(request: Request):
+    sitemap_file = os.path.join(frontend_dist, "sitemap.xml")
+    if os.path.isfile(sitemap_file):
+        with open(sitemap_file, "r", encoding="utf-8") as f:
+            content = f.read()
+    else:
+        domain = os.getenv("SITE_URL", str(request.base_url).rstrip("/"))
+        content = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{domain}/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>{domain}/upload</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{domain}/ask</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{domain}/insights</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{domain}/reports</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>"""
+    return Response(content=content, media_type="application/xml")
+
+@app.get("/robots.txt", include_in_schema=False)
+async def get_robots(request: Request):
+    robots_file = os.path.join(frontend_dist, "robots.txt")
+    if os.path.isfile(robots_file):
+        with open(robots_file, "r", encoding="utf-8") as f:
+            content = f.read()
+    else:
+        domain = os.getenv("SITE_URL", str(request.base_url).rstrip("/"))
+        content = f"User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: {domain}/sitemap.xml\n"
+    return Response(content=content, media_type="text/plain")
 
 if os.path.exists(frontend_dist) and os.path.exists(os.path.join(frontend_dist, "index.html")):
     assets_dir = os.path.join(frontend_dist, "assets")

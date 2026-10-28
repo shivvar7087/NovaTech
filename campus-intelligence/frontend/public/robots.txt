@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://campus-resource-intelligence.onrender.com/sitemap.xml
+
